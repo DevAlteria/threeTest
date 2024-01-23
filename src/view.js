@@ -82,6 +82,7 @@ animate();
 */
 
 //MQTT
+import Paho from 'paho-mqtt';
 var client = new Paho.MQTT.Client("wedge.alteriaautomation.com", 1884, "clientId" + new Date().getTime());
 
 //THREE
