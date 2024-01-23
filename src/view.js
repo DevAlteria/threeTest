@@ -136,7 +136,7 @@ animate();
 
 		var angle = last_data.time % 10000 / 10000 * 360;
 		const phi = THREE.MathUtils.degToRad(angle);
-		const theta = THREE.MathUtils.degToRad(parameters.azimuth);
+		const theta = THREE.MathUtils.degToRad(0);
 
 		sun.setFromSphericalCoords(1, phi, theta);
 
