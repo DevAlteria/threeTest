@@ -339,7 +339,7 @@ function render() {
 		force.setDirection(new THREE.Vector3(last_data.accX, last_data.accY, last_data.accZ).normalize());
 		(new THREE.Vector3(last_data.accX, last_data.accY, last_data.accZ));
 	}
-	//updateSun();
+	updateSun();
 	water.material.uniforms['time'].value += 1.0 / 60.0;
 
 	renderer.render(scene, camera);
