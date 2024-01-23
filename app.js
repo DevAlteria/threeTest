@@ -3,7 +3,6 @@ const webpackDevMiddleware = require("webpack-dev-middleware");
 const fs = require("fs");
 const config = require("./webpack.config.js");
 const compiler = webpack(config);
-const path = require('path');
 
 
 const express = require('express');
@@ -18,16 +17,7 @@ app.use(
     );
     
 app.use("/assets", express.static("assets"));
-
-app.get('/', (req, res) => {
-    res.send('Hello World!');
-    });
-
-app.get('/view', (req, res) => {
-            res.sendFile(path.join(__dirname, '/src/view.html'));
-    });
     
-
 app.listen(port, () => {
     console.log(`Example app listening at http://localhost:${port}`);
     });
