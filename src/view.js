@@ -134,7 +134,7 @@ animate();
 
 	function updateSun() {
 
-		var angle = last_data.time % 8640000 / 8640000 * 360;
+		var angle = last_data.time % 86400000 / 86400000 * 360;
 		const phi = THREE.MathUtils.degToRad(angle);
 		const theta = THREE.MathUtils.degToRad(0);
 
