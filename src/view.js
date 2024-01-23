@@ -85,6 +85,9 @@ var data;
 var last_data;
 
 last_data.time = 0;
+last_data.roll = 0;
+last_data.yaw = 0;
+last_data.pitch = 0;
 
 //MQTT
 import Paho from 'paho-mqtt';
