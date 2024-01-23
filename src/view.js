@@ -125,7 +125,7 @@ import { Sky } from 'three/examples/jsm/objects/Sky.js';
 import { OBJLoader } from 'three/examples/jsm/loaders/OBJLoader.js';
 
 let stats;
-let camera, scene, renderer;
+let camera, scene, sceneEnv, renderer, renderTarget;
 let controls, water, sun, mesh, boey, boeyMaterial, sky;
 
 init();
@@ -218,10 +218,7 @@ function init() {
 	};
 
 	const pmremGenerator = new THREE.PMREMGenerator(renderer);
-	const sceneEnv = new THREE.Scene();
-
-	let renderTarget;
-
+	sceneEnv = new THREE.Scene();
 
 	updateSun();
 
