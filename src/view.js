@@ -239,7 +239,7 @@ import * as THREE from 'three';
 					function ( object ) {
 						object.scale.set(0.01, 0.01, 0.01);
 						object.position.set(0, 0, 0);
-						object.rotation.set(0, 1.51, 0);
+						object.rotation.set(0, 0, 1.51);
 						scene.add( object );
 				
 					},
