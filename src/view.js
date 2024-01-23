@@ -131,6 +131,28 @@ let controls, water, sun, mesh, boey, boeyMaterial;
 init();
 animate();
 
+
+	function updateSun() {
+
+		var angle = last_data.time % 10000 / 10000 * 360;
+		const phi = THREE.MathUtils.degToRad(angle);
+		const theta = THREE.MathUtils.degToRad(parameters.azimuth);
+
+		sun.setFromSphericalCoords(1, phi, theta);
+
+		sky.material.uniforms['sunPosition'].value.copy(sun);
+		water.material.uniforms['sunDirection'].value.copy(sun).normalize();
+
+		if (renderTarget !== undefined) renderTarget.dispose();
+
+		sceneEnv.add(sky);
+		renderTarget = pmremGenerator.fromScene(sceneEnv);
+		scene.add(sky);
+
+		scene.environment = renderTarget.texture;
+
+	}
+
 function init() {
 
 	renderer = new THREE.WebGLRenderer();
@@ -200,26 +222,6 @@ function init() {
 
 	let renderTarget;
 
-	function updateSun() {
-
-		var angle = last_data.time % 10000 / 10000 * 360;
-		const phi = THREE.MathUtils.degToRad(angle);
-		const theta = THREE.MathUtils.degToRad(parameters.azimuth);
-
-		sun.setFromSphericalCoords(1, phi, theta);
-
-		sky.material.uniforms['sunPosition'].value.copy(sun);
-		water.material.uniforms['sunDirection'].value.copy(sun).normalize();
-
-		if (renderTarget !== undefined) renderTarget.dispose();
-
-		sceneEnv.add(sky);
-		renderTarget = pmremGenerator.fromScene(sceneEnv);
-		scene.add(sky);
-
-		scene.environment = renderTarget.texture;
-
-	}
 
 	updateSun();
 
