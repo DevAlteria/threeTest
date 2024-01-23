@@ -125,7 +125,7 @@ import { Sky } from 'three/examples/jsm/objects/Sky.js';
 import { OBJLoader } from 'three/examples/jsm/loaders/OBJLoader.js';
 
 let stats;
-let camera, scene, sceneEnv, renderer, renderTarget, pmremGenerator;
+let camera, scene, sceneEnv, renderer, renderTarget, pmremGenerator, ambient_light;
 let controls, water, sun, mesh, boey, boeyMaterial, sky;
 
 init();
@@ -175,6 +175,9 @@ function init() {
 	//
 
 	sun = new THREE.Vector3();
+
+	ambient_light = new THREE.AmbientLight(0x404040);
+	scene.add(ambient_light);
 
 	// Water
 
