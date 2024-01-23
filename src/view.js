@@ -246,7 +246,15 @@ function init() {
 			object.position.set(0, 0, 0);
 			object.rotation.set(-1.51, 0, 0);
 			boey = object;
-			boeyMaterial = new THREE.MeshPhysicalMaterial({ specularColorMap: new THREE.TextureLoader().load('assets/textures/Boey_1K_BaseColor.png') });
+			boeyMaterial = new THREE.MeshPhysicalMaterial({
+				color: 0x63452c,
+				roughness: 0.275,
+				metalness: 0.5,
+				ior: 1.5,
+				reflectivity: 1,
+				iridescence: 0,
+				wireframe: true
+			});
 			boey.traverse((mesh)	=> {
 				if (mesh.isMesh) mesh.material = boeyMaterial;
 			});
