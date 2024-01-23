@@ -232,7 +232,7 @@ import * as THREE from 'three';
 
 				const loader = new OBJLoader();
 
-				const boey = loader.load(
+				const id_boey = loader.load(
 					// resource URL
 					'assets/models/boey-canarias.obj',
 					// called when resource is loaded
@@ -241,7 +241,8 @@ import * as THREE from 'three';
 						object.position.set(0, 0, 0);
 						object.rotation.set(-1.51, 0, 0);
 						scene.add( object );
-						return object;
+						console.log(object.id);
+						return object.id;
 					},
 					// called when loading is in progresses
 					function ( xhr ) {
@@ -256,6 +257,8 @@ import * as THREE from 'three';
 				
 					}
 				);
+				console.log(id_boey);
+
 
 				//
 
@@ -316,10 +319,10 @@ import * as THREE from 'three';
 
 				const time = performance.now() * 0.001;
 
-				boey.position.y = Math.sin( time ) * 20;
-				boey.rotation.x = -1.51 + last_data.pitch;
-				boey.rotation.y = last_data.yaw;
-				boey.rotation.z = last_data.roll;
+				mesh.position.y = Math.sin( time ) * 20;
+				mesh.rotation.x = -1.51 + last_data.pitch;
+				mesh.rotation.y = last_data.yaw;
+				mesh.rotation.z = last_data.roll;
 
 				water.material.uniforms[ 'time' ].value += 1.0 / 60.0;
 
