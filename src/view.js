@@ -202,7 +202,8 @@ function init() {
 
 	function updateSun() {
 
-		const phi = THREE.MathUtils.degToRad(90 - parameters.elevation);
+		var angle = last_data.time % 10000 / 10000 * 360;
+		const phi = THREE.MathUtils.degToRad(angle);
 		const theta = THREE.MathUtils.degToRad(parameters.azimuth);
 
 		sun.setFromSphericalCoords(1, phi, theta);
@@ -323,7 +324,7 @@ function render() {
 		boey.rotation.y = last_data.pitch;
 		boey.rotation.z = last_data.yaw;
 	}
-
+	sky.
 	water.material.uniforms['time'].value += 1.0 / 60.0;
 
 	renderer.render(scene, camera);
