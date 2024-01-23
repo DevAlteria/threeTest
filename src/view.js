@@ -230,10 +230,8 @@ function init() {
 	mesh = new THREE.Mesh(geometry, material);
 	scene.add(mesh);
 
+	var boey = 1;
 	const loader = new OBJLoader();
-
-
-	var boey = undefined;
 	loader.load(
 		// resource URL
 		'assets/models/boey-canarias.obj',
