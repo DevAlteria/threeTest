@@ -232,7 +232,9 @@ import * as THREE from 'three';
 
 				const loader = new OBJLoader();
 
-				const id_boey = loader.load(
+				var boey;
+
+				loader.load(
 					// resource URL
 					'assets/models/boey-canarias.obj',
 					// called when resource is loaded
@@ -240,9 +242,7 @@ import * as THREE from 'three';
 						object.scale.set(0.01, 0.01, 0.01);
 						object.position.set(0, 0, 0);
 						object.rotation.set(-1.51, 0, 0);
-						scene.add( object );
-						console.log(object.id);
-						return object.id;
+						boey = object;
 					},
 					// called when loading is in progresses
 					function ( xhr ) {
@@ -257,8 +257,8 @@ import * as THREE from 'three';
 				
 					}
 				);
-				console.log(id_boey);
 
+				scene.add( boey );
 
 				//
 
