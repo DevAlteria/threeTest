@@ -122,6 +122,7 @@ import * as THREE from 'three';
 			import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 			import { Water } from 'three/examples/jsm/objects/Water.js';
 			import { Sky } from 'three/examples/jsm/objects/Sky.js';
+			import { OBJLoader } from 'three/examples/jsm/loaders/OBJLoader.js';
 
 			let stats;
 			let camera, scene, renderer;
@@ -229,6 +230,31 @@ import * as THREE from 'three';
 				mesh = new THREE.Mesh( geometry, material );
 				scene.add( mesh );
 
+				const loader = new OBJLoader();
+
+				loader.load(
+					// resource URL
+					'assets/models/boey-canarias.obj',
+					// called when resource is loaded
+					function ( object ) {
+				
+						scene.add( object );
+				
+					},
+					// called when loading is in progresses
+					function ( xhr ) {
+				
+						console.log( ( xhr.loaded / xhr.total * 100 ) + '% loaded' );
+				
+					},
+					// called when loading has errors
+					function ( error ) {
+				
+						console.log( 'An error happened' );
+				
+					}
+				);
+
 				//
 
 				controls = new OrbitControls( camera, renderer.domElement );
@@ -288,7 +314,7 @@ import * as THREE from 'three';
 
 				const time = performance.now() * 0.001;
 
-				mesh.position.y = Math.sin( time ) * 20 + 5;
+				mesh.position.y = Math.sin( time ) * 20;
 				mesh.rotation.x = last_data.pitch;
 				mesh.rotation.y = last_data.yaw;
 				mesh.rotation.z = last_data.roll;
