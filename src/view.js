@@ -82,6 +82,9 @@ animate();
 */
 
 var data;
+var last_data;
+
+last_data.time = 0;
 
 //MQTT
 import Paho from 'paho-mqtt';
@@ -98,6 +101,9 @@ function onMessageArrived(message) {
 	data = JSON.parse(message.payloadString);
 	console.log(data.time);
 	console.log(data.roll);
+	if (data.time > last_data.time) {
+		last_data = data;
+	}
 }
 
 client.connect({ onSuccess: onConnect, userName: 'wedge-server', password: 'N&@^rEWv', useSSL: true });
@@ -282,8 +288,9 @@ import * as THREE from 'three';
 				const time = performance.now() * 0.001;
 
 				mesh.position.y = Math.sin( time ) * 20 + 5;
-				mesh.rotation.x = time * 0.5;
-				mesh.rotation.z = time * 0.51;
+				mesh.rotation.x = last_data.roll;
+				mesh.rotation.y = last_data.pitch;
+				mesh.rotation.z = last_data.yaw;
 
 				water.material.uniforms[ 'time' ].value += 1.0 / 60.0;
 
