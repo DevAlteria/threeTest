@@ -116,215 +116,217 @@ function onConnect() {
 //THREE
 import * as THREE from 'three';
 
-			import Stats from 'three/examples/jsm/libs/stats.module.js';
+import Stats from 'three/examples/jsm/libs/stats.module.js';
 
-			//import { GUI } from 'three/examples/jsm/libs/lil-gui.module.min.js';
-			import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
-			import { Water } from 'three/examples/jsm/objects/Water.js';
-			import { Sky } from 'three/examples/jsm/objects/Sky.js';
-			import { OBJLoader } from 'three/examples/jsm/loaders/OBJLoader.js';
+//import { GUI } from 'three/examples/jsm/libs/lil-gui.module.min.js';
+import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
+import { Water } from 'three/examples/jsm/objects/Water.js';
+import { Sky } from 'three/examples/jsm/objects/Sky.js';
+import { OBJLoader } from 'three/examples/jsm/loaders/OBJLoader.js';
 
-			let stats;
-			let camera, scene, renderer;
-			let controls, water, sun, mesh;
+let stats;
+let camera, scene, renderer;
+let controls, water, sun, mesh;
 
-			init();
-			animate();
+init();
+animate();
 
-			function init() {
+function init() {
 
-				renderer = new THREE.WebGLRenderer();
-				renderer.setPixelRatio( window.devicePixelRatio );
-				renderer.setSize( window.innerWidth, window.innerHeight );
-				renderer.toneMapping = THREE.NoToneMapping;
-				renderer.toneMappingExposure = 0.5;
-				document.body.appendChild( renderer.domElement );
+	renderer = new THREE.WebGLRenderer();
+	renderer.setPixelRatio(window.devicePixelRatio);
+	renderer.setSize(window.innerWidth, window.innerHeight);
+	renderer.toneMapping = THREE.NoToneMapping;
+	renderer.toneMappingExposure = 0.5;
+	document.body.appendChild(renderer.domElement);
 
-				//
+	//
 
-				scene = new THREE.Scene();
+	scene = new THREE.Scene();
 
-				camera = new THREE.PerspectiveCamera( 55, window.innerWidth / window.innerHeight, 1, 20000 );
-				camera.position.set( 30, 30, 100 );
+	camera = new THREE.PerspectiveCamera(55, window.innerWidth / window.innerHeight, 1, 20000);
+	camera.position.set(30, 30, 100);
 
-				//
+	//
 
-				sun = new THREE.Vector3();
+	sun = new THREE.Vector3();
 
-				// Water
+	// Water
 
-				const waterGeometry = new THREE.PlaneGeometry( 10000, 10000 );
+	const waterGeometry = new THREE.PlaneGeometry(10000, 10000);
 
-				water = new Water(
-					waterGeometry,
-					{
-						textureWidth: 512,
-						textureHeight: 512,
-						waterNormals: new THREE.TextureLoader().load( 'assets/textures/waternormals.jpg', function ( texture ) {
+	water = new Water(
+		waterGeometry,
+		{
+			textureWidth: 512,
+			textureHeight: 512,
+			waterNormals: new THREE.TextureLoader().load('assets/textures/waternormals.jpg', function (texture) {
 
-							texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
+				texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
 
-						} ),
-						sunDirection: new THREE.Vector3(),
-						sunColor: 0xffffff,
-						waterColor: 0x001e0f,
-						distortionScale: 3.7,
-						fog: scene.fog !== undefined
-					}
-				);
+			}),
+			sunDirection: new THREE.Vector3(),
+			sunColor: 0xffffff,
+			waterColor: 0x001e0f,
+			distortionScale: 3.7,
+			fog: scene.fog !== undefined
+		}
+	);
 
-				water.rotation.x = - Math.PI / 2;
+	water.rotation.x = - Math.PI / 2;
 
-				scene.add( water );
+	scene.add(water);
 
-				// Skybox
+	// Skybox
 
-				const sky = new Sky();
-				sky.scale.setScalar( 10000 );
-				scene.add( sky );
+	const sky = new Sky();
+	sky.scale.setScalar(10000);
+	scene.add(sky);
 
-				const skyUniforms = sky.material.uniforms;
+	const skyUniforms = sky.material.uniforms;
 
-				skyUniforms[ 'turbidity' ].value = 10;
-				skyUniforms[ 'rayleigh' ].value = 2;
-				skyUniforms[ 'mieCoefficient' ].value = 0.005;
-				skyUniforms[ 'mieDirectionalG' ].value = 0.8;
+	skyUniforms['turbidity'].value = 10;
+	skyUniforms['rayleigh'].value = 2;
+	skyUniforms['mieCoefficient'].value = 0.005;
+	skyUniforms['mieDirectionalG'].value = 0.8;
 
-				const parameters = {
-					elevation: 2,
-					azimuth: 180
-				};
+	const parameters = {
+		elevation: 2,
+		azimuth: 180
+	};
 
-				const pmremGenerator = new THREE.PMREMGenerator( renderer );
-				const sceneEnv = new THREE.Scene();
+	const pmremGenerator = new THREE.PMREMGenerator(renderer);
+	const sceneEnv = new THREE.Scene();
 
-				let renderTarget;
+	let renderTarget;
 
-				function updateSun() {
+	function updateSun() {
 
-					const phi = THREE.MathUtils.degToRad( 90 - parameters.elevation );
-					const theta = THREE.MathUtils.degToRad( parameters.azimuth );
+		const phi = THREE.MathUtils.degToRad(90 - parameters.elevation);
+		const theta = THREE.MathUtils.degToRad(parameters.azimuth);
 
-					sun.setFromSphericalCoords( 1, phi, theta );
+		sun.setFromSphericalCoords(1, phi, theta);
 
-					sky.material.uniforms[ 'sunPosition' ].value.copy( sun );
-					water.material.uniforms[ 'sunDirection' ].value.copy( sun ).normalize();
+		sky.material.uniforms['sunPosition'].value.copy(sun);
+		water.material.uniforms['sunDirection'].value.copy(sun).normalize();
 
-					if ( renderTarget !== undefined ) renderTarget.dispose();
+		if (renderTarget !== undefined) renderTarget.dispose();
 
-					sceneEnv.add( sky );
-					renderTarget = pmremGenerator.fromScene( sceneEnv );
-					scene.add( sky );
+		sceneEnv.add(sky);
+		renderTarget = pmremGenerator.fromScene(sceneEnv);
+		scene.add(sky);
 
-					scene.environment = renderTarget.texture;
+		scene.environment = renderTarget.texture;
 
-				}
+	}
 
-				updateSun();
+	updateSun();
 
-				//
+	//
 
-				const geometry = new THREE.BoxGeometry( 30, 30, 30 );
-				const material = new THREE.MeshStandardMaterial( { roughness: 0 } );
+	const geometry = new THREE.BoxGeometry(30, 30, 30);
+	const material = new THREE.MeshStandardMaterial({ roughness: 0 });
 
-				mesh = new THREE.Mesh( geometry, material );
-				scene.add( mesh );
+	mesh = new THREE.Mesh(geometry, material);
+	scene.add(mesh);
 
-				const loader = new OBJLoader();
+	const loader = new OBJLoader();
 
 
-				var boey_id = -1;
-				loader.load(
-					// resource URL
-					'assets/models/boey-canarias.obj',
-					// called when resource is loaded
-					function ( object ) {
-						object.scale.set(0.01, 0.01, 0.01);
-						object.position.set(0, 0, 0);
-						object.rotation.set(-1.51, 0, 0);
-						scene.add( object );
-						boey_id = object.id;
-					},
-					// called when loading is in progresses
-					function ( xhr ) {
-				
-						console.log( ( xhr.loaded / xhr.total * 100 ) + '% loaded' );
-				
-					},
-					// called when loading has errors
-					function ( error ) {
-				
-						console.log( 'An error happened' );
-				
-					}
-				);
+	var boey_id = -1;
+	loader.load(
+		// resource URL
+		'assets/models/boey-canarias.obj',
+		// called when resource is loaded
+		function (object) {
+			object.scale.set(0.01, 0.01, 0.01);
+			object.position.set(0, 0, 0);
+			object.rotation.set(-1.51, 0, 0);
+			scene.add(object);
+			boey_id = object.id;
+		},
+		// called when loading is in progresses
+		function (xhr) {
 
-				//
+			console.log((xhr.loaded / xhr.total * 100) + '% loaded');
 
-				controls = new OrbitControls( camera, renderer.domElement );
-				controls.maxPolarAngle = Math.PI * 0.495;
-				controls.target.set( 0, 10, 0 );
-				controls.minDistance = 40.0;
-				controls.maxDistance = 200.0;
-				controls.update();
+		},
+		// called when loading has errors
+		function (error) {
 
-				//
+			console.log('An error happened');
 
-				stats = new Stats();
-				document.body.appendChild( stats.dom );
+		}
+	);
 
-				/*
-				// GUI
+	//
 
-				const gui = new GUI();
+	controls = new OrbitControls(camera, renderer.domElement);
+	controls.maxPolarAngle = Math.PI * 0.495;
+	controls.target.set(0, 10, 0);
+	controls.minDistance = 40.0;
+	controls.maxDistance = 200.0;
+	controls.update();
 
-				const folderSky = gui.addFolder( 'Sky' );
-				folderSky.add( parameters, 'elevation', 0, 90, 0.1 ).onChange( updateSun );
-				folderSky.add( parameters, 'azimuth', - 180, 180, 0.1 ).onChange( updateSun );
-				folderSky.open();
+	//
 
-				const waterUniforms = water.material.uniforms;
+	stats = new Stats();
+	document.body.appendChild(stats.dom);
 
-				const folderWater = gui.addFolder( 'Water' );
-				folderWater.add( waterUniforms.distortionScale, 'value', 0, 8, 0.1 ).name( 'distortionScale' );
-				folderWater.add( waterUniforms.size, 'value', 0.1, 10, 0.1 ).name( 'size' );
-				folderWater.open();
+	/*
+	// GUI
 
-				//
-				*/
+	const gui = new GUI();
 
-				window.addEventListener( 'resize', onWindowResize );
+	const folderSky = gui.addFolder( 'Sky' );
+	folderSky.add( parameters, 'elevation', 0, 90, 0.1 ).onChange( updateSun );
+	folderSky.add( parameters, 'azimuth', - 180, 180, 0.1 ).onChange( updateSun );
+	folderSky.open();
 
-			}
+	const waterUniforms = water.material.uniforms;
 
-			function onWindowResize() {
+	const folderWater = gui.addFolder( 'Water' );
+	folderWater.add( waterUniforms.distortionScale, 'value', 0, 8, 0.1 ).name( 'distortionScale' );
+	folderWater.add( waterUniforms.size, 'value', 0.1, 10, 0.1 ).name( 'size' );
+	folderWater.open();
 
-				camera.aspect = window.innerWidth / window.innerHeight;
-				camera.updateProjectionMatrix();
+	//
+	*/
 
-				renderer.setSize( window.innerWidth, window.innerHeight );
+	window.addEventListener('resize', onWindowResize);
 
-			}
+}
 
-			function animate() {
+function onWindowResize() {
 
-				requestAnimationFrame( animate );
-				render();
-				stats.update();
+	camera.aspect = window.innerWidth / window.innerHeight;
+	camera.updateProjectionMatrix();
 
-			}
+	renderer.setSize(window.innerWidth, window.innerHeight);
 
-			function render() {
+}
 
-				const time = performance.now() * 0.001;
+function animate() {
 
-				scene.getObjectById(boey_id).position.x = Math.sin( time ) * 20;
-				scene.getObjectById(boey_id).rotation.x = -1.51 + last_data.pitch;
-				scene.getObjectById(boey_id).rotation.y = last_data.yaw;
-				scene.getObjectById(boey_id).rotation.z = last_data.roll;
+	requestAnimationFrame(animate);
+	render();
+	stats.update();
 
-				water.material.uniforms[ 'time' ].value += 1.0 / 60.0;
+}
 
-				renderer.render( scene, camera );
+function render() {
 
-			}
+	const time = performance.now() * 0.001;
+
+	if (boey_id != -1) {
+		scene.getObjectById(boey_id).position.x = Math.sin(time) * 20;
+		scene.getObjectById(boey_id).rotation.x = -1.51 + last_data.pitch;
+		scene.getObjectById(boey_id).rotation.y = last_data.yaw;
+		scene.getObjectById(boey_id).rotation.z = last_data.roll;
+	}
+
+	water.material.uniforms['time'].value += 1.0 / 60.0;
+
+	renderer.render(scene, camera);
+
+}
