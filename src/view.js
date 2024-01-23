@@ -102,7 +102,7 @@ import * as THREE from 'three';
 				renderer = new THREE.WebGLRenderer();
 				renderer.setPixelRatio( window.devicePixelRatio );
 				renderer.setSize( window.innerWidth, window.innerHeight );
-				renderer.toneMapping = THREE.ACESFilmicToneMapping;
+				renderer.toneMapping = THREE.NoToneMapping;
 				renderer.toneMappingExposure = 0.5;
 				document.body.appendChild( renderer.domElement );
 
