@@ -238,6 +238,8 @@ import * as THREE from 'three';
 					// called when resource is loaded
 					function ( object ) {
 						object.scale.set(0.01, 0.01, 0.01);
+						object.position.set(0, 0, 0);
+						object.rotation.set(0, 1.51, 0);
 						scene.add( object );
 				
 					},
