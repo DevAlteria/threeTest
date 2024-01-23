@@ -237,7 +237,7 @@ import * as THREE from 'three';
 					'assets/models/boey-canarias.obj',
 					// called when resource is loaded
 					function ( object ) {
-						object.scale.set(0.1, 0.1, 0.1);
+						object.scale.set(0.01, 0.01, 0.01);
 						scene.add( object );
 				
 					},
