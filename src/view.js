@@ -1,6 +1,8 @@
 import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
+import { Water } from 'three/addons/objects/Water.js';
 
+const renderrer = new THREE.WebGLRenderer();
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
 
@@ -16,6 +18,28 @@ scene.add( cube );
 camera.position.z = 5;
 
 const controls = new OrbitControls( camera, renderer.domElement );
+
+const water = new Water(
+	waterGeometry,
+	{
+		textureWidth: 512,
+		textureHeight: 512,
+		waterNormals: new THREE.TextureLoader().load( 'textures/waternormals.jpg', function ( texture ) {
+
+			texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
+
+		} ),
+		sunDirection: new THREE.Vector3(),
+		sunColor: 0xffffff,
+		waterColor: 0x001e0f,
+		distortionScale: 3.7,
+		fog: scene.fog !== undefined
+	}
+);
+
+water.rotation.x = - Math.PI / 2;
+
+scene.add( water );
 
 function animate() {
 	requestAnimationFrame( animate );
