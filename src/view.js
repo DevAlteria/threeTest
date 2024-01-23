@@ -226,7 +226,7 @@ function init() {
 	pmremGenerator = new THREE.PMREMGenerator(renderer);
 	sceneEnv = new THREE.Scene();
 
-	updateSun();
+	//updateSun();
 
 	//
 
@@ -329,7 +329,7 @@ function render() {
 		boey.rotation.y = last_data.pitch;
 		boey.rotation.z = last_data.yaw;
 	}
-	updateSun();
+	//updateSun();
 	water.material.uniforms['time'].value += 1.0 / 60.0;
 
 	renderer.render(scene, camera);
