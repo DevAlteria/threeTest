@@ -233,7 +233,7 @@ function init() {
 	const loader = new OBJLoader();
 
 
-	var boey_id = -1;
+	var boey = undefined;
 	loader.load(
 		// resource URL
 		'assets/models/boey-canarias.obj',
@@ -242,8 +242,8 @@ function init() {
 			object.scale.set(0.01, 0.01, 0.01);
 			object.position.set(0, 0, 0);
 			object.rotation.set(-1.51, 0, 0);
-			scene.add(object);
-			boey_id = object.id;
+			boey = object;
+			scene.add(boey);
 		},
 		// called when loading is in progresses
 		function (xhr) {
@@ -318,11 +318,11 @@ function render() {
 
 	const time = performance.now() * 0.001;
 
-	if (boey_id != -1) {
-		scene.getObjectById(boey_id).position.x = Math.sin(time) * 20;
-		scene.getObjectById(boey_id).rotation.x = -1.51 + last_data.pitch;
-		scene.getObjectById(boey_id).rotation.y = last_data.yaw;
-		scene.getObjectById(boey_id).rotation.z = last_data.roll;
+	if (boey !== undefined) {
+		boey.position.x = Math.sin(time) * 20;
+		boey.rotation.x = -1.51 + last_data.pitch;
+		boey.rotation.y = last_data.yaw;
+		boey.rotation.z = last_data.roll;
 	}
 
 	water.material.uniforms['time'].value += 1.0 / 60.0;
