@@ -314,12 +314,9 @@ function animate() {
 
 function render() {
 
-	const time = performance.now() * 0.001;
-
 	if (boey !== undefined) {
-		boey.position.x = Math.sin(time) * 20;
-		boey.rotation.x = -1.51 + last_data.pitch;
-		boey.rotation.y = last_data.yaw;
+		boey.rotation.x = -1.57 + last_data.yaw;
+		boey.rotation.y = last_data.pitch;
 		boey.rotation.z = last_data.roll;
 	}
 
