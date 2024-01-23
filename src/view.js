@@ -126,7 +126,7 @@ import { OBJLoader } from 'three/examples/jsm/loaders/OBJLoader.js';
 
 let stats;
 let camera, scene, renderer;
-let controls, water, sun, mesh;
+let controls, water, sun, mesh, boey;
 
 init();
 animate();
@@ -230,7 +230,6 @@ function init() {
 	mesh = new THREE.Mesh(geometry, material);
 	scene.add(mesh);
 
-	var boey = 1;
 	const loader = new OBJLoader();
 	loader.load(
 		// resource URL
