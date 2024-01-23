@@ -1,7 +1,7 @@
 import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 import { Water } from 'three/examples/jsm/objects/Water.js';
-import { Sky } from 'three/addons/objects/Sky.js';
+import { Sky } from 'three/examples/jsm/objects/Sky.js';
 
 
 const renderer = new THREE.WebGLRenderer();
