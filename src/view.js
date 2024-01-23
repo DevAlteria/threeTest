@@ -141,7 +141,6 @@ animate();
 		sun.setFromSphericalCoords(1, phi, theta);
 
 		sky.material.uniforms['sunPosition'].value.copy(sun);
-		sky.material.uniforms['uSunPosition'].value.copy(sun);
 		water.material.uniforms['sunDirection'].value.copy(sun).normalize();
 
 		if (renderTarget !== undefined) renderTarget.dispose();
@@ -161,7 +160,10 @@ function init() {
 	renderer.setSize(window.innerWidth, window.innerHeight);
 	renderer.toneMapping = THREE.NoToneMapping;
 	renderer.toneMappingExposure = 0.5;
+	renderer.shadowMap.enabled = true;
+    renderer.shadowMap.type = THREE.BasicShadowMap;
 	document.body.appendChild(renderer.domElement);
+
 
 	//
 
