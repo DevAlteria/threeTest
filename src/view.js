@@ -126,7 +126,7 @@ import { OBJLoader } from 'three/examples/jsm/loaders/OBJLoader.js';
 
 let stats;
 let camera, scene, renderer;
-let controls, water, sun, mesh, boey;
+let controls, water, sun, mesh, boey, boeyMaterial;
 
 init();
 animate();
@@ -240,7 +240,10 @@ function init() {
 			object.position.set(0, 0, 0);
 			object.rotation.set(-1.51, 0, 0);
 			boey = object;
-			boey.material = new THREE.MeshBasicMaterial({ color: 0x00ff00 });
+			boeyMaterial = new THREE.MeshStandardMaterial({ roughness: 0 });
+			boey.traverse((mesh)	=> {
+				if (mesh.isMesh) mesh.material = boeyMaterial;
+			});
 			scene.add(boey);
 		},
 		// called when loading is in progresses
