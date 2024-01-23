@@ -24,7 +24,7 @@ app.get('/', (req, res) => {
     });
 
 app.get('/view', (req, res) => {
-            res.sendFile(path.join(__dirname, '/view.html'));
+            res.sendFile(path.join(__dirname, '/src/view.html'));
     });
     
 
