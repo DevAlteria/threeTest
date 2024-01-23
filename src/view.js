@@ -125,7 +125,7 @@ import { Sky } from 'three/examples/jsm/objects/Sky.js';
 import { OBJLoader } from 'three/examples/jsm/loaders/OBJLoader.js';
 
 let stats;
-let camera, scene, sceneEnv, renderer, renderTarget, pmremGenerator, ambient_light;
+let camera, scene, sceneEnv, renderer, renderTarget, pmremGenerator, ambient_light, force;
 let controls, water, sun, boey, boeyMaterial, sky;
 
 init();
@@ -268,6 +268,9 @@ function init() {
 		}
 	);
 
+	force = new THREE.ArrowHelper(new THREE.Vector3(0, 0, 0), new THREE.Vector3(1, 0, 0), 1, 0xff0000);
+	scene.add(force);
+
 	//
 
 	controls = new OrbitControls(camera, renderer.domElement);
@@ -330,6 +333,10 @@ function render() {
 		boey.rotation.x = +1.57 + last_data.roll;
 		boey.rotation.y = last_data.pitch;
 		boey.rotation.z = last_data.yaw;
+		force.setLength(1 * sqrt(last_data.accX * last_data.accX + last_data.accY * last_data.accY + last_data.accZ * last_data.accZ));
+		force.position.set(boey.position.x, boey.position.y, boey.position.z);
+		force.setDirection(new THREE.Vector3(last_data.accX, last_data.accY, last_data.accZ).normalize());
+		(new THREE.Vector3(last_data.accX, last_data.accY, last_data.accZ));
 	}
 	//updateSun();
 	water.material.uniforms['time'].value += 1.0 / 60.0;
