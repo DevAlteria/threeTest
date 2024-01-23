@@ -90,7 +90,7 @@ import * as THREE from 'three';
 			import { Water } from 'three/examples/jsm/objects/Water.js';
 			import { Sky } from 'three/examples/jsm/objects/Sky.js';
 
-			let container, stats;
+			let stats;
 			let camera, scene, renderer;
 			let controls, water, sun, mesh;
 
@@ -99,16 +99,15 @@ import * as THREE from 'three';
 
 			function init() {
 
-				container = document.getElementById( 'container' );
-
+				//container = document.getElementById( 'container' );
 				//
-
+				
 				renderer = new THREE.WebGLRenderer();
 				renderer.setPixelRatio( window.devicePixelRatio );
 				renderer.setSize( window.innerWidth, window.innerHeight );
 				renderer.toneMapping = THREE.ACESFilmicToneMapping;
 				renderer.toneMappingExposure = 0.5;
-				container.appendChild( renderer.domElement );
+				document.body.appendChild( renderer.domElement );
 
 				//
 
@@ -212,7 +211,7 @@ import * as THREE from 'three';
 				//
 
 				stats = new Stats();
-				container.appendChild( stats.dom );
+				//container.appendChild( stats.dom );
 
 				/*
 				// GUI
