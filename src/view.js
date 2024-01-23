@@ -85,6 +85,23 @@ animate();
 import Paho from 'paho-mqtt';
 var client = new Paho.Client("wedge.alteriaautomation.com", 1884, "clientId" + new Date().getTime());
 
+client.onConnectionLost = onConnectionLost;
+function onConnectionLost(responseObject) {
+	console.log("onConnectionLost:");
+	client.unsubscribe("imu");
+}
+
+client.onMessageArrived = onMessageArrived;
+function onMessageArrived(message) {
+	console.log("onMessageArrived:" + message.payloadString);
+}
+
+client.connect({ onSuccess: onConnect, userName: 'wedge-server', password: 'N&@^rEWv', useSSL: true });
+function onConnect() {
+	console.log("onConnect");
+	client.subscribe("imu");
+}
+
 //THREE
 import * as THREE from 'three';
 
