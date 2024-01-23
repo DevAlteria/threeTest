@@ -1,6 +1,6 @@
 import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
-import { Water } from 'three/addons/objects/Water.js';
+import { Water } from 'three/examples/jsm/objects/Water.js';
 
 const renderrer = new THREE.WebGLRenderer();
 const scene = new THREE.Scene();
