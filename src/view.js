@@ -291,9 +291,9 @@ import * as THREE from 'three';
 				const time = performance.now() * 0.001;
 
 				mesh.position.y = Math.sin( time ) * 20 + 5;
-				mesh.rotation.x = last_data.roll;
+				mesh.rotation.x = last_data.yaw;
 				mesh.rotation.y = last_data.pitch;
-				mesh.rotation.z = last_data.yaw;
+				mesh.rotation.z = last_data.roll;
 
 				water.material.uniforms[ 'time' ].value += 1.0 / 60.0;
 
