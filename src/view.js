@@ -85,7 +85,7 @@ import * as THREE from 'three';
 
 			import Stats from 'three/examples/jsm/libs/stats.module.js';
 
-			import { GUI } from 'three/examples/jsm/libs/lil-gui.module.min.js';
+			//import { GUI } from 'three/examples/jsm/libs/lil-gui.module.min.js';
 			import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 			import { Water } from 'three/examples/jsm/objects/Water.js';
 			import { Sky } from 'three/examples/jsm/objects/Sky.js';
@@ -130,7 +130,7 @@ import * as THREE from 'three';
 					{
 						textureWidth: 512,
 						textureHeight: 512,
-						waterNormals: new THREE.TextureLoader().load( 'textures/waternormals.jpg', function ( texture ) {
+						waterNormals: new THREE.TextureLoader().load( 'assets/textures/waternormals.jpg', function ( texture ) {
 
 							texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
 
@@ -214,6 +214,7 @@ import * as THREE from 'three';
 				stats = new Stats();
 				container.appendChild( stats.dom );
 
+				/*
 				// GUI
 
 				const gui = new GUI();
@@ -231,6 +232,7 @@ import * as THREE from 'three';
 				folderWater.open();
 
 				//
+				*/
 
 				window.addEventListener( 'resize', onWindowResize );
 
