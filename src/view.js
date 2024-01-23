@@ -324,7 +324,7 @@ function render() {
 		boey.rotation.y = last_data.pitch;
 		boey.rotation.z = last_data.yaw;
 	}
-	sky.
+	updateSun();
 	water.material.uniforms['time'].value += 1.0 / 60.0;
 
 	renderer.render(scene, camera);
