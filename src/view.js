@@ -134,13 +134,14 @@ animate();
 
 	function updateSun() {
 
-		var angle = last_data.time % 10000 / 10000 * 360;
+		var angle = last_data.time % 8640000 / 8640000 * 360;
 		const phi = THREE.MathUtils.degToRad(angle);
 		const theta = THREE.MathUtils.degToRad(0);
 
 		sun.setFromSphericalCoords(1, phi, theta);
 
 		sky.material.uniforms['sunPosition'].value.copy(sun);
+		sky.material.uniforms['uSunPosition'].value.copy(sun);
 		water.material.uniforms['sunDirection'].value.copy(sun).normalize();
 
 		if (renderTarget !== undefined) renderTarget.dispose();
