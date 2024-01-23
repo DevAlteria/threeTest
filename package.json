@@ -1,0 +1,14 @@
+{
+    "name": "test-three-js-wedge",
+    "version": "0.0.1",
+    "author": "Victor Alonso Martinez",
+    "description": "Test three js wedge",
+    "main": "app.js",
+    "scripts": {
+        "start": "node app.js"
+    },
+    "dependencies": {
+        "express": "^4.17.1",
+        "three": "^0.124.0"
+    }
+  }
