@@ -82,7 +82,7 @@ animate();
 */
 
 var data;
-var last_data;
+var last_data = {};
 
 last_data.time = 0;
 last_data.roll = 0;
