@@ -81,6 +81,17 @@ function animate() {
 animate();
 */
 
+//MQTT
+import mqtt from 'mqtt';
+
+const client = mqtt.connect("wedge.alteriaautomation.com", 1884, "webapp-ID" + new Date().getTime());
+
+client.on("connect", ({ onSuccess: onConnect, userName: 'wedge-server', pasword: 'N&@^rEWv', useSSL: true }) => {
+	console.log("connected");
+	client.subscribe("test");
+});
+
+//THREE
 import * as THREE from 'three';
 
 			import Stats from 'three/examples/jsm/libs/stats.module.js';
