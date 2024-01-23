@@ -126,7 +126,7 @@ import { OBJLoader } from 'three/examples/jsm/loaders/OBJLoader.js';
 
 let stats;
 let camera, scene, renderer;
-let controls, water, sun, mesh, boey, boeyMaterial;
+let controls, water, sun, mesh, boey, boeyMaterial, sky;
 
 init();
 animate();
@@ -201,7 +201,7 @@ function init() {
 
 	// Skybox
 
-	const sky = new Sky();
+	sky = new Sky();
 	sky.scale.setScalar(10000);
 	scene.add(sky);
 
