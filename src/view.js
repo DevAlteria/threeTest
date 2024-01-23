@@ -1,6 +1,8 @@
 import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 import { Water } from 'three/examples/jsm/objects/Water.js';
+import { Sky } from 'three/addons/objects/Sky.js';
+
 
 const renderer = new THREE.WebGLRenderer();
 renderer.setPixelRatio( window.devicePixelRatio );
@@ -46,11 +48,31 @@ water.rotation.x = - Math.PI / 2;
 
 scene.add( water );
 
+const sky = new Sky();
+sky.scale.setScalar( 10000 );
+scene.add( sky );
+
+const skyUniforms = sky.material.uniforms;
+
+skyUniforms[ 'turbidity' ].value = 10;
+skyUniforms[ 'rayleigh' ].value = 2;
+skyUniforms[ 'mieCoefficient' ].value = 0.005;
+skyUniforms[ 'mieDirectionalG' ].value = 0.8;
+
+const parameters = {
+	elevation: 2,
+	azimuth: 180
+};
+
+const pmremGenerator = new THREE.PMREMGenerator( renderer );
+
 function animate() {
 	requestAnimationFrame( animate );
 
 	cube.rotation.x += 0.01;
 	cube.rotation.y += 0.01;
+
+	water.material.uniforms[ 'time' ].value += 1.0 / 60.0;
 
 	renderer.render( scene, camera );
 }
