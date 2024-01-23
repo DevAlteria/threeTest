@@ -197,7 +197,8 @@ function init() {
 			sunColor: 0xffffff,
 			waterColor: 0x001e0f,
 			distortionScale: 3.7,
-			fog: scene.fog !== undefined
+			fog: scene.fog !== undefined,
+			opacity: 0.1
 		}
 	);
 
