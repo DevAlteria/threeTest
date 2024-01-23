@@ -99,9 +99,6 @@ import * as THREE from 'three';
 
 			function init() {
 
-				//container = document.getElementById( 'container' );
-				//
-				
 				renderer = new THREE.WebGLRenderer();
 				renderer.setPixelRatio( window.devicePixelRatio );
 				renderer.setSize( window.innerWidth, window.innerHeight );
@@ -211,7 +208,7 @@ import * as THREE from 'three';
 				//
 
 				stats = new Stats();
-				//container.appendChild( stats.dom );
+				document.body.appendChild( stats.dom );
 
 				/*
 				// GUI
