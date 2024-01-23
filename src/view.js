@@ -83,7 +83,7 @@ animate();
 
 //MQTT
 import Paho from 'paho-mqtt';
-var client = new Paho.MQTT.Client("wedge.alteriaautomation.com", 1884, "clientId" + new Date().getTime());
+var client = new Paho.Client("wedge.alteriaautomation.com", 1884, "clientId" + new Date().getTime());
 
 //THREE
 import * as THREE from 'three';
