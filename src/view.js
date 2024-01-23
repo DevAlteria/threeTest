@@ -19,6 +19,8 @@ camera.position.z = 5;
 
 const controls = new OrbitControls( camera, renderer.domElement );
 
+const waterGeometry = new THREE.PlaneGeometry( 10000, 10000 );
+
 const water = new Water(
 	waterGeometry,
 	{
