@@ -333,8 +333,9 @@ function render() {
 		boey.rotation.x = +1.57 + last_data.roll;
 		boey.rotation.y = last_data.pitch;
 		boey.rotation.z = last_data.yaw;
-		force.setLength(1 * Math.sqrt(last_data.accX * last_data.accX + last_data.accY * last_data.accY + last_data.accZ * last_data.accZ));
+		force.setLength(5 * Math.sqrt(last_data.accX * last_data.accX + last_data.accY * last_data.accY + last_data.accZ * last_data.accZ));
 		force.position.set(boey.position.x, boey.position.y, boey.position.z);
+		force.scale.set(2, 2, 2);
 		force.setDirection(new THREE.Vector3(last_data.accX, last_data.accY, last_data.accZ).normalize());
 		(new THREE.Vector3(last_data.accX, last_data.accY, last_data.accZ));
 	}
