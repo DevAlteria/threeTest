@@ -240,7 +240,7 @@ function init() {
 			object.position.set(0, 0, 0);
 			object.rotation.set(-1.51, 0, 0);
 			boey = object;
-			boey.material = new THREE.MeshStandardMaterial({ roughness: 0 });
+			boey.material = new THREE.MeshBasicMaterial({ color: 0x00ff00 });
 			scene.add(boey);
 		},
 		// called when loading is in progresses
