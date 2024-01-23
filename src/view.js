@@ -126,7 +126,7 @@ import { OBJLoader } from 'three/examples/jsm/loaders/OBJLoader.js';
 
 let stats;
 let camera, scene, sceneEnv, renderer, renderTarget, pmremGenerator, ambient_light;
-let controls, water, sun, mesh, boey, boeyMaterial, sky;
+let controls, water, sun, boey, boeyMaterial, sky;
 
 init();
 animate();
@@ -229,12 +229,6 @@ function init() {
 	//updateSun();
 
 	//
-
-	const geometry = new THREE.BoxGeometry(30, 30, 30);
-	const material = new THREE.MeshStandardMaterial({ roughness: 0 });
-
-	mesh = new THREE.Mesh(geometry, material);
-	scene.add(mesh);
 
 	const loader = new OBJLoader();
 	loader.load(
