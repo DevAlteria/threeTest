@@ -108,7 +108,7 @@ function init() {
 	sun = new THREE.Vector3();
 
 	dirLight = new THREE.DirectionalLight(0xffffff, 1);
-	dirLight.position.set(0, 0, 1);
+	dirLight.position.set(10, 10, 10);
 	dirLight.castShadow = true;
 	lightFolder.add(dirLight, 'intensity', 0, 10).name('Directional Light intensity');
 	scene.add(dirLight);
