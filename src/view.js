@@ -244,11 +244,9 @@ function init() {
 			boeyMaterial = new THREE.MeshPhysicalMaterial({
 				color: 0x63452c,
 				roughness: 0.275,
-				metalness: 0.5,
+				metalness: 0.75,
 				ior: 1.5,
 				reflectivity: 1,
-				iridescence: 0,
-				wireframe: true
 			});
 			boey.traverse((mesh)	=> {
 				if (mesh.isMesh) mesh.material = boeyMaterial;
