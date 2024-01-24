@@ -35,15 +35,24 @@ import * as THREE from 'three';
 
 import Stats from 'three/examples/jsm/libs/stats.module.js';
 
-import { GUI } from 'three/examples/jsm/libs/lil-gui.module.min.js';
+//import { GUI } from 'three/examples/jsm/libs/lil-gui.module.min.js';
+import { GUI } from 'dat.gui'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 import { Water } from 'three/examples/jsm/objects/Water.js';
 import { Sky } from 'three/examples/jsm/objects/Sky.js';
 import { OBJLoader } from 'three/examples/jsm/loaders/OBJLoader.js';
 
 let stats;
+let gui;
 let camera, scene, sceneEnv, renderer, renderTarget, pmremGenerator, ambient_light, force;
 let controls, water, sun, boey, boeyMaterial, sky;
+
+//gui
+
+gui = new GUI();
+const cubeFolder = gui.addFolder('Ambeint Light');
+cubeFolder.add(ambient_light.intensity, 'Power', 0, 10);
+cubeFolder.open()
 
 init();
 animate();
@@ -82,6 +91,7 @@ function init() {
     renderer.shadowMap.type = THREE.BasicShadowMap;
 	document.body.appendChild(renderer.domElement);
 
+	
 
 	//
 
@@ -95,7 +105,7 @@ function init() {
 	sun = new THREE.Vector3();
 
 	ambient_light = new THREE.AmbientLight(0x404040, 2);
-	//scene.add(ambient_light);
+	scene.add(ambient_light);
 
 	// Water
 
@@ -202,6 +212,7 @@ function init() {
 	stats = new Stats();
 	document.body.appendChild(stats.dom);
 
+	/*
 	// GUI
 
 	const gui = new GUI();
@@ -219,6 +230,7 @@ function init() {
 	folderWater.open();
 
 	//
+	*/
 
 	window.addEventListener('resize', onWindowResize);
 
