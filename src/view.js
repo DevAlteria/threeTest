@@ -44,7 +44,7 @@ import { OBJLoader } from 'three/examples/jsm/loaders/OBJLoader.js';
 
 let stats;
 let gui;
-let camera, scene, sceneEnv, renderer, renderTarget, pmremGenerator, ambient_light, force;
+let camera, scene, sceneEnv, renderer, renderTarget, pmremGenerator, ambient_light, force, dirLight;
 let controls, water, sun, boey, boeyMaterial, sky;
 let parameters = {
 	wireframe: false
@@ -53,7 +53,7 @@ let parameters = {
 //gui
 
 gui = new GUI();
-const lightFolder = gui.addFolder('Ambient Light');
+const lightFolder = gui.addFolder('Light');
 const objectFolder = gui.addFolder('Boey');
 
 
@@ -107,8 +107,14 @@ function init() {
 
 	sun = new THREE.Vector3();
 
+	dirLight = new THREE.DirectionalLight(0xffffff, 1);
+	dirLight.position.set(0, 0, 1);
+	dirLight.castShadow = true;
+	lightFolder.add(dirLight, 'intensity', 0, 10).name('Directional Light intensity');
+	scene.add(dirLight);
+
 	ambient_light = new THREE.AmbientLight(0x404040, 2);
-	lightFolder.add(ambient_light, 'intensity', 0, 10);
+	lightFolder.add(ambient_light, 'intensity', 0, 10).name('Ambient Light intensity');
 	scene.add(ambient_light);
 
 	// Water
