@@ -50,7 +50,8 @@ let controls, water, sun, boey, boeyMaterial, sky;
 //gui
 
 gui = new GUI();
-const lightFolder = gui.addFolder('Ambeint Light');
+const lightFolder = gui.addFolder('Ambient Light');
+const objectFolder = gui.addFolder('Boey Light');
 
 init();
 animate();
@@ -64,7 +65,7 @@ animate();
 		const theta = THREE.MathUtils.degToRad(0);
 
 		sun.setFromSphericalCoords(1, phi, theta);
-
+		
 		sky.material.uniforms['sunPosition'].value.copy(sun);
 		water.material.uniforms['sunDirection'].value.copy(sun).normalize();
 
@@ -178,6 +179,7 @@ function init() {
 			boey.traverse((mesh)	=> {
 				if (mesh.isMesh) mesh.material = boeyMaterial;
 			});
+			objectFolder.add(object, 'visible', true);
 			scene.add(boey);
 		},
 		// called when loading is in progresses
