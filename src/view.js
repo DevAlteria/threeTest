@@ -66,8 +66,9 @@ animate();
 		var ms = new Date().getTime();
 		var angle = ms % 20000 / 20000 * 360;
 
-		if (!parameters.skyRT) angle = 240;
-
+		if (parameters.skyRT === false) {
+			angle = 240;
+		}
 		const phi = THREE.MathUtils.degToRad(angle);
 		const theta = THREE.MathUtils.degToRad(0);
 
