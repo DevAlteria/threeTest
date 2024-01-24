@@ -329,6 +329,7 @@ function animate() {
 function render() {
 
 	if (boey !== undefined && last_data.roll !== undefined) {
+		console.log(last_data);
 		boey.rotation.x = +1.57 + last_data.roll;
 		boey.rotation.y = last_data.pitch;
 		boey.rotation.z = last_data.yaw;
