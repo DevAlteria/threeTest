@@ -62,31 +62,31 @@ init();
 animate();
 
 
-	function updateSun() {
-		var ms = new Date().getTime();
-		var angle = ms % 20000 / 20000 * 360;
+function updateSun() {
+	var ms = new Date().getTime();
+	var angle = ms % 20000 / 20000 * 360;
 
-		if (parameters.skyRT === false) {
-			angle = 90;
-		}
-		console.log(angle);
-		const phi = THREE.MathUtils.degToRad(angle);
-		const theta = THREE.MathUtils.degToRad(0);
-
-		sun.setFromSphericalCoords(1, phi, theta);
-		
-		sky.material.uniforms['sunPosition'].value.copy(sun);
-		water.material.uniforms['sunDirection'].value.copy(sun).normalize();
-
-		if (renderTarget !== undefined) renderTarget.dispose();
-
-		sceneEnv.add(sky);
-		renderTarget = pmremGenerator.fromScene(sceneEnv);
-		scene.add(sky);
-
-		scene.environment = renderTarget.texture;
-
+	if (parameters.skyRT === false) {
+		angle = 90;
 	}
+	console.log(angle);
+	const phi = THREE.MathUtils.degToRad(angle);
+	const theta = THREE.MathUtils.degToRad(0);
+
+	sun.setFromSphericalCoords(1, phi, theta);
+
+	sky.material.uniforms['sunPosition'].value.copy(sun);
+	water.material.uniforms['sunDirection'].value.copy(sun).normalize();
+
+	if (renderTarget !== undefined) renderTarget.dispose();
+
+	sceneEnv.add(sky);
+	renderTarget = pmremGenerator.fromScene(sceneEnv);
+	scene.add(sky);
+
+	scene.environment = renderTarget.texture;
+
+}
 
 function init() {
 
@@ -96,10 +96,10 @@ function init() {
 	renderer.toneMapping = THREE.NoToneMapping;
 	renderer.toneMappingExposure = 0.5;
 	renderer.shadowMap.enabled = true;
-    renderer.shadowMap.type = THREE.BasicShadowMap;
+	renderer.shadowMap.type = THREE.BasicShadowMap;
 	document.body.appendChild(renderer.domElement);
 
-	
+
 
 	//
 
@@ -145,7 +145,7 @@ function init() {
 		}
 	);
 
-	water.traverse((mesh)	=> {
+	water.traverse((mesh) => {
 		if (mesh.isMesh) mesh.material.transparent = true;
 	});
 
@@ -193,12 +193,12 @@ function init() {
 				ior: 1.5,
 				reflectivity: 1,
 			});
-			boey.traverse((mesh)	=> {
+			boey.traverse((mesh) => {
 				if (mesh.isMesh) mesh.material = boeyMaterial;
 			});
 			objectFolder.add(object, 'visible', true).name('Boey');
 			objectFolder.add(parameters, 'wireframe', false).name('Boey skeleton').onChange(function () {
-				boey.traverse((mesh)	=> {
+				boey.traverse((mesh) => {
 					if (mesh.isMesh) mesh.material.wireframe = parameters.wireframe;
 				});
 			});
@@ -229,8 +229,6 @@ function init() {
 	controls.target.set(0, 0, 0);
 	controls.minDistance = 150.0;
 	controls.maxDistance = 500.0;
-	//controls.minAzimuthAngle = -2 * Math.PI;
-	//controls.maxAzimuthAngle = 2 * Math.PI;
 	controls.minPolarAngle = 0;
 	controls.maxPolarAngle = Math.PI;
 	controls.update();
