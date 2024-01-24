@@ -229,6 +229,7 @@ function init() {
 	controls.target.set(0, 0, 0);
 	controls.minDistance = 0.0;
 	controls.maxDistance = 200.0;
+	controls.minTargetRadius = 10;
 	controls.update();
 
 	//
