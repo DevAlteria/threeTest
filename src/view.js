@@ -77,6 +77,7 @@ animate();
 
 		sceneEnv.add(sky);
 		renderTarget = pmremGenerator.fromScene(sceneEnv);
+		lightFolder.add(sky, 'visible', true).name('Sky');
 		scene.add(sky);
 
 		scene.environment = renderTarget.texture;
