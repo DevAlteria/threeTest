@@ -184,7 +184,6 @@ function init() {
 				if (mesh.isMesh) mesh.material = boeyMaterial;
 			});
 			objectFolder.add(object, 'visible', true);
-			objectFolder.add(object, 'wireframe', true);
 			scene.add(boey);
 		},
 		// called when loading is in progresses
