@@ -176,7 +176,7 @@ function init() {
 
 	sun = new THREE.Vector3();
 
-	ambient_light = new THREE.AmbientLight(0x404040, 10);
+	ambient_light = new THREE.AmbientLight(0x404040, 1);
 	scene.add(ambient_light);
 
 	// Water
