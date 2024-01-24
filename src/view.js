@@ -50,9 +50,7 @@ let controls, water, sun, boey, boeyMaterial, sky;
 //gui
 
 gui = new GUI();
-const cubeFolder = gui.addFolder('Ambeint Light');
-cubeFolder.add(ambient_light.intensity, 'Power', 0, 10);
-cubeFolder.open()
+const lightFolder = gui.addFolder('Ambeint Light');
 
 init();
 animate();
@@ -105,6 +103,7 @@ function init() {
 	sun = new THREE.Vector3();
 
 	ambient_light = new THREE.AmbientLight(0x404040, 2);
+	lightFolder.add(ambient_light.intensity, 'Power', 0, 10);
 	scene.add(ambient_light);
 
 	// Water
