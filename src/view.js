@@ -206,6 +206,7 @@ function init() {
 	);
 
 	force = new THREE.ArrowHelper(new THREE.Vector3(0, 0, 0), new THREE.Vector3(1, 0, 0), 1, 0xff0000);
+	gui.add(force, 'visible', true);
 	scene.add(force);
 
 	//
