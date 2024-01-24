@@ -183,7 +183,14 @@ function init() {
 			boey.traverse((mesh)	=> {
 				if (mesh.isMesh) mesh.material = boeyMaterial;
 			});
+			object.wireframe = false;
 			objectFolder.add(object, 'visible', true);
+			objectFolder.add(object, 'wireframe', true);
+			objectFolder.addEventListener('change', function () {
+				object.traverse((mesh)	=> {
+					if (mesh.isMesh) mesh.material.wireframe = object.wireframe;
+				});
+			});
 			scene.add(boey);
 		},
 		// called when loading is in progresses
