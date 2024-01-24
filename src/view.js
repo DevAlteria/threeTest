@@ -77,7 +77,6 @@ animate();
 
 		sceneEnv.add(sky);
 		renderTarget = pmremGenerator.fromScene(sceneEnv);
-		lightFolder.add(sky, 'visible', true).name('Sky');
 		scene.add(sky);
 
 		scene.environment = renderTarget.texture;
@@ -154,6 +153,7 @@ function init() {
 
 	sky = new Sky();
 	sky.scale.setScalar(10000);
+	lightFolder.add(sky, 'visible', true).name('Sky');
 	scene.add(sky);
 
 	const skyUniforms = sky.material.uniforms;
