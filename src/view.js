@@ -146,6 +146,7 @@ function init() {
 
 	water.rotation.x = - Math.PI / 2;
 
+	objectFolder.add(water, 'visible', true).name('Water');
 	scene.add(water);
 
 	// Skybox
@@ -189,8 +190,8 @@ function init() {
 			boey.traverse((mesh)	=> {
 				if (mesh.isMesh) mesh.material = boeyMaterial;
 			});
-			objectFolder.add(object, 'visible', true);
-			objectFolder.add(parameters, 'wireframe', false).onChange(function () {
+			objectFolder.add(object, 'visible', true).name('Boey');
+			objectFolder.add(parameters, 'wireframe', false).name('Boey skeleton').onChange(function () {
 				boey.traverse((mesh)	=> {
 					if (mesh.isMesh) mesh.material.wireframe = parameters.wireframe;
 				});
