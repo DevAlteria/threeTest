@@ -47,7 +47,8 @@ let gui;
 let camera, scene, sceneEnv, renderer, renderTarget, pmremGenerator, ambient_light, force, dirLight;
 let controls, water, sun, boey, boeyMaterial, sky;
 let parameters = {
-	wireframe: false
+	wireframe: false,
+	skyRT: false,
 };
 
 //gui
@@ -55,16 +56,18 @@ let parameters = {
 gui = new GUI();
 const lightFolder = gui.addFolder('Light');
 const objectFolder = gui.addFolder('Boey');
-
+lightFolder.add(parameters, 'skyRT', false).name('Sky Real Time');
 
 init();
 animate();
 
 
 	function updateSun() {
-
 		var ms = new Date().getTime();
 		var angle = ms % 20000 / 20000 * 360;
+
+		if (!parameters.skyRT) angle = 240;
+
 		const phi = THREE.MathUtils.degToRad(angle);
 		const theta = THREE.MathUtils.degToRad(0);
 
