@@ -51,7 +51,7 @@ let controls, water, sun, boey, boeyMaterial, sky;
 
 gui = new GUI();
 const lightFolder = gui.addFolder('Ambient Light');
-const objectFolder = gui.addFolder('Boey Light');
+const objectFolder = gui.addFolder('Boey');
 
 init();
 animate();
@@ -143,7 +143,7 @@ function init() {
 	const skyUniforms = sky.material.uniforms;
 
 	skyUniforms['turbidity'].value = 10;
-	skyUniforms['rayleigh'].value = 0;
+	skyUniforms['rayleigh'].value = 0.5;
 	skyUniforms['mieCoefficient'].value = 0.005;
 	skyUniforms['mieDirectionalG'].value = 0.8;
 
