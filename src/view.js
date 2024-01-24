@@ -24,7 +24,7 @@ function onMessageArrived(message) {
 	}
 }
 
-client.connect({ onSuccess: onConnect, userName: 'wedge-server', password: 'N&@^rEWv', useSSL: true });
+client.connect({ onSuccess: onConnect, userName: 'public', password: 'wedge-pass', useSSL: true });
 function onConnect() {
 	console.log("onConnect");
 	client.subscribe("imu");
