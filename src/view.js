@@ -130,6 +130,10 @@ function init() {
 		}
 	);
 
+	water.traverse((mesh)	=> {
+		if (mesh.isMesh) mesh.material.transparent = true;
+	});
+
 	water.rotation.x = - Math.PI / 2;
 
 	scene.add(water);
