@@ -229,8 +229,8 @@ function init() {
 	controls.target.set(0, 0, 0);
 	controls.minDistance = 150.0;
 	controls.maxDistance = 500.0;
-	controls.minAzimuthAngle = -2 * Math.PI;
-	controls.maxAzimuthAngle = 2 * Math.PI;
+	//controls.minAzimuthAngle = -2 * Math.PI;
+	//controls.maxAzimuthAngle = 2 * Math.PI;
 	controls.minPolarAngle = 0;
 	controls.maxPolarAngle = Math.PI;
 	controls.update();
