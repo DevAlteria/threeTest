@@ -184,6 +184,7 @@ function init() {
 				if (mesh.isMesh) mesh.material = boeyMaterial;
 			});
 			objectFolder.add(object, 'visible', true);
+			objectFolder.add(object, 'wireframe', true);
 			scene.add(boey);
 		},
 		// called when loading is in progresses
@@ -216,26 +217,6 @@ function init() {
 
 	stats = new Stats();
 	document.body.appendChild(stats.dom);
-
-	/*
-	// GUI
-
-	const gui = new GUI();
-
-	const folderSky = gui.addFolder( 'Sky' );
-	folderSky.add( parameters, 'elevation', 0, 90, 0.1 ).onChange( updateSun );
-	folderSky.add( parameters, 'azimuth', - 180, 180, 0.1 ).onChange( updateSun );
-	folderSky.open();
-
-	const waterUniforms = water.material.uniforms;
-
-	const folderWater = gui.addFolder( 'Water' );
-	folderWater.add( waterUniforms.distortionScale, 'value', 0, 8, 0.1 ).name( 'distortionScale' );
-	folderWater.add( waterUniforms.size, 'value', 0.1, 10, 0.1 ).name( 'size' );
-	folderWater.open();
-
-	//
-	*/
 
 	window.addEventListener('resize', onWindowResize);
 
@@ -274,7 +255,6 @@ function render() {
 	}
 	updateSun();
 	water.material.uniforms['time'].value += 1.0 / 60.0;
-
 	renderer.render(scene, camera);
 
 }
