@@ -46,6 +46,9 @@ let stats;
 let gui;
 let camera, scene, sceneEnv, renderer, renderTarget, pmremGenerator, ambient_light, force;
 let controls, water, sun, boey, boeyMaterial, sky;
+let parameters = {
+	wireframe: false
+};
 
 //gui
 
@@ -151,10 +154,6 @@ function init() {
 	skyUniforms['mieCoefficient'].value = 0.005;
 	skyUniforms['mieDirectionalG'].value = 0.8;
 
-	const parameters = {
-		elevation: 2,
-		azimuth: 180
-	};
 
 	pmremGenerator = new THREE.PMREMGenerator(renderer);
 	sceneEnv = new THREE.Scene();
@@ -185,10 +184,10 @@ function init() {
 			});
 			object.wireframe = false;
 			objectFolder.add(object, 'visible', true);
-			objectFolder.add(object, 'wireframe', true);
+			objectFolder.add(parameters, 'wireframe', false);
 			objectFolder.addEventListener('change', function () {
 				object.traverse((mesh)	=> {
-					if (mesh.isMesh) mesh.material.wireframe = object.wireframe;
+					if (mesh.isMesh) mesh.material.wireframe = parameters.wireframe;
 				});
 			});
 			scene.add(boey);
