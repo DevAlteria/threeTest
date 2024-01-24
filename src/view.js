@@ -55,6 +55,12 @@ let parameters = {
 gui = new GUI();
 const lightFolder = gui.addFolder('Ambient Light');
 const objectFolder = gui.addFolder('Boey');
+objectFolder.add(parameters, 'wireframe', false);
+objectFolder.addEventListener('change', function () {
+	object.traverse((mesh)	=> {
+		if (mesh.isMesh) mesh.material.wireframe = parameters.wireframe;
+	});
+});
 
 init();
 animate();
@@ -184,12 +190,7 @@ function init() {
 			});
 			object.wireframe = false;
 			objectFolder.add(object, 'visible', true);
-			objectFolder.add(parameters, 'wireframe', false);
-			objectFolder.addEventListener('change', function () {
-				object.traverse((mesh)	=> {
-					if (mesh.isMesh) mesh.material.wireframe = parameters.wireframe;
-				});
-			});
+			
 			scene.add(boey);
 		},
 		// called when loading is in progresses
