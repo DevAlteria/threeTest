@@ -143,7 +143,7 @@ function init() {
 	const skyUniforms = sky.material.uniforms;
 
 	skyUniforms['turbidity'].value = 10;
-	skyUniforms['rayleigh'].value = 2;
+	skyUniforms['rayleigh'].value = 0;
 	skyUniforms['mieCoefficient'].value = 0.005;
 	skyUniforms['mieDirectionalG'].value = 0.8;
 
