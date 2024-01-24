@@ -35,7 +35,7 @@ import * as THREE from 'three';
 
 import Stats from 'three/examples/jsm/libs/stats.module.js';
 
-//import { GUI } from 'three/examples/jsm/libs/lil-gui.module.min.js';
+import { GUI } from 'three/examples/jsm/libs/lil-gui.module.min.js';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 import { Water } from 'three/examples/jsm/objects/Water.js';
 import { Sky } from 'three/examples/jsm/objects/Sky.js';
@@ -94,7 +94,7 @@ function init() {
 
 	sun = new THREE.Vector3();
 
-	ambient_light = new THREE.AmbientLight(0x404040, 1);
+	ambient_light = new THREE.AmbientLight(0x404040, 2);
 	//scene.add(ambient_light);
 
 	// Water
@@ -202,7 +202,6 @@ function init() {
 	stats = new Stats();
 	document.body.appendChild(stats.dom);
 
-	/*
 	// GUI
 
 	const gui = new GUI();
@@ -220,7 +219,6 @@ function init() {
 	folderWater.open();
 
 	//
-	*/
 
 	window.addEventListener('resize', onWindowResize);
 
