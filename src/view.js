@@ -270,7 +270,8 @@ function render() {
 		force.setLength(5 * Math.sqrt(last_data.accX * last_data.accX + last_data.accY * last_data.accY + last_data.accZ * last_data.accZ));
 		force.position.set(boey.position.x, boey.position.y, boey.position.z);
 		force.scale.set(2, 2, 2);
-		force.setDirection(new THREE.Vector3(last_data.accX, last_data.accY, last_data.accZ).normalize());
+		force.setDirection(new THREE.Vector3(last_data.accX, last_data.accY, last_data.accZ).applyEuler(boey.rotation).normalize().multiplyScalar(-1));
+
 		(new THREE.Vector3(last_data.accX, last_data.accY, last_data.accZ));
 	}
 	updateSun();
