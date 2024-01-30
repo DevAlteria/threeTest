@@ -67,7 +67,7 @@ function updateSun() {
 	var angle = ms % 20000 / 20000 * 360;
 
 	if (parameters.skyRT === false) {
-		angle = 90;
+		angle = 60;
 	}
 	console.log(angle);
 	const phi = THREE.MathUtils.degToRad(angle);
@@ -106,7 +106,7 @@ function init() {
 	scene = new THREE.Scene();
 
 	camera = new THREE.PerspectiveCamera(55, window.innerWidth / window.innerHeight, 2, 200000);
-	camera.position.set(30, 30, 100);
+	camera.position.set(60, 60, 200);
 
 	//
 
@@ -236,7 +236,7 @@ function init() {
 	//
 
 	stats = new Stats();
-	document.body.appendChild(stats.dom);
+	//document.body.appendChild(stats.dom);
 
 	window.addEventListener('resize', onWindowResize);
 
