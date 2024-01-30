@@ -64,12 +64,11 @@ animate();
 
 function updateSun() {
 	var ms = new Date().getTime();
-	var angle = ms % 20000 / 20000 * 360;
-
+	var angle = (ms - 12 * 3600000) % 86400000 / 86400000 * 360;
+	console.log(angle);
 	if (parameters.skyRT === false) {
 		angle = 60;
 	}
-	console.log(angle);
 	const phi = THREE.MathUtils.degToRad(angle);
 	const theta = THREE.MathUtils.degToRad(0);
 
@@ -248,7 +247,6 @@ function onWindowResize() {
 	camera.updateProjectionMatrix();
 
 	renderer.setSize(window.innerWidth, window.innerHeight);
-	console.log(boey);
 
 }
 
@@ -263,15 +261,13 @@ function animate() {
 function render() {
 
 	if (boey !== undefined && last_data.time) {
-		console.log(last_data);
 		boey.rotation.x = +1.57 + last_data.roll;
 		boey.rotation.y = last_data.pitch;
 		boey.rotation.z = last_data.yaw;
 		force.setLength(5 * Math.sqrt(last_data.accX * last_data.accX + last_data.accY * last_data.accY + last_data.accZ * last_data.accZ));
 		force.position.set(boey.position.x, boey.position.y, boey.position.z);
 		force.scale.set(2, 2, 2);
-		force.setDirection(new THREE.Vector3(last_data.accX, last_data.accY, last_data.accZ).normalize());
-		(new THREE.Vector3(last_data.accX, last_data.accY, last_data.accZ));
+		force.setDirection(new THREE.Vector3(last_data.accX, -last_data.accZ, last_data.accY));
 	}
 	updateSun();
 	water.material.uniforms['time'].value += 1.0 / 60.0;
