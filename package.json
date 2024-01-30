@@ -8,14 +8,14 @@
         "start": "node app.js"
     },
     "dependencies": {
+        "dat.gui": "^0.7.7",
         "express": "^4.17.1",
-        "three": "^0.124.0",
         "html-webpack-plugin": "^5.3.1",
+        "paho-mqtt": "^1.1.0",
+        "three": "^0.160.1",
         "webpack": "^5.35.1",
         "webpack-cli": "^4.6.0",
         "webpack-dev-middleware": "^4.1.0",
-        "webpack-dev-server": "^3.11.2",
-        "paho-mqtt": "^1.1.0",
-        "dat.gui": "^0.7.7"
+        "webpack-dev-server": "^4.15.1"
     }
-  }
+}
