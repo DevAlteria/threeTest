@@ -64,8 +64,8 @@ animate();
 
 function updateSun() {
 	var ms = new Date().getTime();
-	var angle = ms % 86400000 / 86400000 * 360;
-
+	var angle = (ms - 12 * 3600000) % 86400000 / 86400000 * 360;
+	console.log(angle);
 	if (parameters.skyRT === false) {
 		angle = 90;
 	}
